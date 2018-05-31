@@ -323,7 +323,7 @@ int orte_submit_init(int argc, char *argv[],
      * us to proceed if the allow-run-as-root flag was given. Otherwise,
      * exit with a giant warning flag
      */
-    if (0 == geteuid() && !orte_cmd_options.run_as_root) {
+    if (0 == geteuid() && !orte_cmd_options.run_as_root && getenv("OMPI_ALLOW_RUN_AS_ROOT") == NULL) {
         /* show_help is not yet available, so print an error manually */
         fprintf(stderr, "--------------------------------------------------------------------------\n");
         if (orte_cmd_options.help) {
